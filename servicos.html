@@ -47,10 +47,32 @@
                 <a href="contato.html">Fazer agendamento</a>
             </article>
         </section>
+    <section class="consulta-servico">
+  <h2>Consulte um serviço</h2>
+
+  <label for="servico">Escolha um serviço:</label>
+  <select id="servico">
+    <option value="">Selecione...</option>
+    <option value="calendario">Calendário Fiscal</option>
+    <option value="documentos">Gerador de Documentos</option>
+    <option value="relacionamento">Central de Relacionamento</option>
+  </select>
+
+  <button id="btnConsultar" type="button">Consultar orientação</button>
+
+  <p id="resultado" aria-live="polite"></p>
+</section>
+    
     </main>
 
     <footer>
         <p>Projeto acadêmico - Programação Web</p>
     </footer>
+        <!-- ... resto do seu HTML ... -->
+    
+    <!-- Adicione esta linha antes de fechar o body -->
+    <script src="js/script.js"></script>
+</body>
+</html>
 </body>
 </html>
