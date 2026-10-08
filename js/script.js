@@ -40,3 +40,37 @@ botaoConsultar.addEventListener("click", () => {
     resultado.textContent = "Serviço não identificado.";
   }
 });
+
+// ==========================================
+// AULA 10 - CATÁLOGO DINÂMICO DE SERVIÇOS
+// ==========================================
+const listaServicos = document.querySelector("#listaServicos");
+
+function renderizarServicos() {
+  // Limpa o container antes de montar (evita duplicar)
+  listaServicos.innerHTML = "";
+
+  // Percorre o array de serviços
+  servicos.forEach((servico) => {
+    // Cria o card (article)
+    const card = document.createElement("article");
+    card.classList.add("card-servico");
+
+    // Cria o título (h3)
+    const titulo = document.createElement("h3");
+    titulo.textContent = servico.nome;
+
+    // Cria a descrição (p)
+    const descricao = document.createElement("p");
+    descricao.textContent = servico.descricao;
+
+    // Coloca o título e a descrição dentro do card
+    card.append(titulo, descricao);
+
+    // Coloca o card dentro do container na página
+    listaServicos.appendChild(card);
+  });
+}
+
+// Executa a função para mostrar os cards na tela
+renderizarServicos();
