@@ -1,3 +1,21 @@
+// ==========================================
+// AULA 09 - ARRAY DE OBJETOS
+// ==========================================
+const servicos = [
+  {
+    nome: "Calendário Fiscal",
+    descricao: "Acesse prazos, lembretes de impostos e declarações."
+  },
+  {
+    nome: "Gerador de Documentos",
+    descricao: "Crie recibos, contratos e propostas em poucos cliques."
+  },
+  {
+    nome: "Central de Relacionamento",
+    descricao: "Organize sua agenda e mantenha o histórico dos clientes."
+  }
+];
+
 // 2 · ENCONTRE OS ELEMENTOS NO DOM
 const campoServico = document.querySelector('#servico');
 const botaoConsultar = document.querySelector('#btnConsultar');
