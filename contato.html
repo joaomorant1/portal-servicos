@@ -22,11 +22,11 @@
         <section>
             <h2>Entre em contato</h2>
             
-            <!-- IMAGEM ATUALIZADA (Opção 1 - Ilustração) -->
-           <img src="https://cdn-icons-png.flaticon.com/512/3176/3176366.png" alt="Ícone de contato por e-mail" style="width: 120px; display: block; margin: 0 auto 20px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176366.png" alt="Ícone de contato por e-mail" style="width: 120px; display: block; margin: 0 auto 20px;">
             <p>Preencha os campos abaixo. Nesta etapa, o formulário ainda não enviará os dados para um servidor.</p>
 
-            <form>
+            <!-- 1. ADICIONADO O id="formContato" NA TAG FORM -->
+            <form id="formContato">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" required>
 
@@ -45,6 +45,9 @@
                 <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
 
                 <button type="submit">Enviar</button>
+                
+                <!-- 2. ADICIONADA A TAG <p> PARA MOSTRAR A MENSAGEM DO JAVASCRIPT -->
+                <p id="mensagemForm" aria-live="polite"></p>
             </form>
         </section>
     </main>
@@ -52,5 +55,8 @@
     <footer>
         <p>Projeto acadêmico - Programação Web</p>
     </footer>
+
+    <!-- 3. ADICIONADO O SCRIPT DO JAVASCRIPT ANTES DO FIM DO BODY -->
+    <script src="js/script.js"></script>
 </body>
 </html>
