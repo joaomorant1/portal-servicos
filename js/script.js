@@ -74,3 +74,39 @@ function renderizarServicos() {
 
 // Executa a função para mostrar os cards na tela
 renderizarServicos();
+
+// ==========================================
+// AULA 13 - LOCAL STORAGE (PREFERÊNCIA)
+// ==========================================
+const campoFavorito = document.querySelector("#servicoFavorito");
+
+// Só executa se o campo existir na página (evita erro nas outras páginas)
+if (campoFavorito) {
+  const botaoFavorito = document.querySelector("#btnSalvarFavorito");
+  const mensagemFavorito = document.querySelector("#favoritoSalvo");
+
+  // 1. Recupera o valor salvo assim que a página carrega
+  const favoritoSalvo = localStorage.getItem("servicoFavorito");
+  if (favoritoSalvo) {
+    campoFavorito.value = favoritoSalvo;
+    mensagemFavorito.textContent = `Seu serviço favorito é: ${favoritoSalvo}`;
+    mensagemFavorito.style.color = "green";
+  }
+
+  // 2. Salva a escolha quando o botão for clicado
+  botaoFavorito.addEventListener("click", () => {
+    const servico = campoFavorito.value;
+
+    if (servico === "") {
+      mensagemFavorito.textContent = "Escolha um serviço primeiro.";
+      mensagemFavorito.style.color = "red";
+      return;
+    }
+
+    // Salva no navegador
+    localStorage.setItem("servicoFavorito", servico);
+    
+    mensagemFavorito.textContent = `Favorito salvo: ${servico}`;
+    mensagemFavorito.style.color = "green";
+  });
+}
