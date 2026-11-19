@@ -19,17 +19,11 @@
     </nav>
 
     <main>
-    <section class="catalogo-servicos">
-  <h2>Catálogo de serviços</h2>
-  <div id="listaServicos"></div>
-</section>        
-        
         <section>
             <h2>Serviços disponíveis</h2>
             <p>Escolha uma das opções abaixo para conhecer os serviços.</p>
 
             <article>
-                <!-- IMAGEM ADICIONADA AQUI -->
                 <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Ícone de localização" style="width: 40px; vertical-align: middle;">
                 <h3 style="display: inline-block; margin-left: 10px;">Consulta de endereço</h3>
                 <p>Serviço destinado à consulta de informações de endereço a partir do CEP.</p>
@@ -37,7 +31,6 @@
             </article>
 
             <article>
-                <!-- IMAGEM ADICIONADA AQUI -->
                 <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" alt="Ícone de chat" style="width: 40px; vertical-align: middle;">
                 <h3 style="display: inline-block; margin-left: 10px;">Atendimento digital</h3>
                 <p>Canal para envio de dúvidas e solicitações de serviços.</p>
@@ -45,76 +38,61 @@
             </article>
 
             <article>
-                <!-- IMAGEM ADICIONADA AQUI -->
                 <img src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="Ícone de calendário" style="width: 40px; vertical-align: middle;">
                 <h3 style="display: inline-block; margin-left: 10px;">Agendamento online</h3>
                 <p>Agende atendimentos presenciais ou remotos com facilidade.</p>
                 <a href="contato.html">Fazer agendamento</a>
             </article>
         </section>
-    <section class="consulta-servico">
-  <h2>Consulte um serviço</h2>
 
-  <label for="servico">Escolha um serviço:</label>
-  <select id="servico">
-    <option value="">Selecione...</option>
-    <option value="calendario">Calendário Fiscal</option>
-    <option value="documentos">Gerador de Documentos</option>
-    <option value="relacionamento">Central de Relacionamento</option>
-  </select>
+        <section class="consulta-servico">
+            <h2>Consulte um serviço</h2>
+            <label for="servico">Escolha um serviço:</label>
+            <select id="servico">
+                <option value="">Selecione...</option>
+                <option value="calendario">Calendário Fiscal</option>
+                <option value="documentos">Gerador de Documentos</option>
+                <option value="relacionamento">Central de Relacionamento</option>
+            </select>
+            <button id="btnConsultar" type="button">Consultar orientação</button>
+            <p id="resultado" aria-live="polite"></p>
+        </section>
 
-  <button id="btnConsultar" type="button">Consultar orientação</button>
+        <section class="preferencia">
+            <h2>Meu serviço favorito</h2>
+            <label for="servicoFavorito">Escolha:</label>
+            <select id="servicoFavorito">
+                <option value="">Selecione...</option>
+                <option value="calendario">Calendário Fiscal</option>
+                <option value="documentos">Gerador de Documentos</option>
+                <option value="relacionamento">Central de Relacionamento</option>
+            </select>
+            <button id="btnSalvarFavorito" type="button">Salvar favorito</button>
+            <p id="favoritoSalvo" aria-live="polite"></p>
+        </section>
 
-  <p id="resultado" aria-live="polite"></p>
-</section>
-<section class="preferencia">
-  <h2>Meu serviço favorito</h2>
-  <label for="servicoFavorito">Escolha:</label>
-  <select id="servicoFavorito">
-    <option value="">Selecione...</option>
-    <option value="calendario">Calendário Fiscal</option>
-    <option value="documentos">Gerador de Documentos</option>
-    <option value="relacionamento">Central de Relacionamento</option>
-  </select>
-  <button id="btnSalvarFavorito" type="button">Salvar favorito</button>
-  <p id="favoritoSalvo" aria-live="polite"></p>
-</section>
+        <!-- SEÇÃO DE FILTRO UNIFICADA -->
+        <section class="filtro-servicos">
+            <h2>Catálogo de serviços por categoria</h2>
+            <label for="filtroCategoria">Filtrar por categoria:</label>
+            <select id="filtroCategoria">
+                <option value="todas">Todas</option>
+                <option value="fiscal">Fiscal</option>
+                <option value="documentos">Documentos</option>
+                <option value="clientes">Clientes</option>
+            </select>
 
-      <section class="filtro-servicos">
-    <h2>Serviços por categoria</h2>
-    <label for="filtroCategoria">Filtrar por categoria:</label>
-    <select id="filtroCategoria">
-      <option value="todas">Todas</option>
-      <option value="fiscal">Fiscal</option>
-      <option value="documentos">Documentos</option>
-      <option value="clientes">Clientes</option>
-    </select>
-
-    <div id="listaServicos" class="lista-servicos">
-      <article class="servico-card" data-categoria="fiscal">
-        <h3>Calendário Fiscal</h3>
-        <p>Lembretes de impostos, declarações e prazos.</p>
-      </article>
-      <article class="servico-card" data-categoria="documentos">
-        <h3>Gerador de Documentos</h3>
-        <p>Recibos, contratos e propostas em poucos cliques.</p>
-      </article>
-      <article class="servico-card" data-categoria="clientes">
-        <h3>Central de Relacionamento</h3>
-        <p>Agenda, histórico e contato com clientes.</p>
-      </article>
-    </div>
-    <p id="mensagemFiltro" aria-live="polite"></p>
-  </section>
-        
+            <!-- O JavaScript vai preencher esta div automaticamente -->
+            <div id="listaServicos" class="lista-servicos"></div>
+            
+            <p id="mensagemFiltro" aria-live="polite"></p>
+        </section>
     </main>
 
     <footer>
         <p>Projeto acadêmico - Programação Web</p>
     </footer>
-        <!-- ... resto do seu HTML ... -->
     
-    <!-- Adicione esta linha antes de fechar o body -->
     <script src="js/script.js"></script>
 </body>
 </html>
