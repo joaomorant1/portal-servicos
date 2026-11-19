@@ -79,7 +79,34 @@
   <button id="btnSalvarFavorito" type="button">Salvar favorito</button>
   <p id="favoritoSalvo" aria-live="polite"></p>
 </section>
-    
+
+      <section class="filtro-servicos">
+    <h2>Serviços por categoria</h2>
+    <label for="filtroCategoria">Filtrar por categoria:</label>
+    <select id="filtroCategoria">
+      <option value="todas">Todas</option>
+      <option value="fiscal">Fiscal</option>
+      <option value="documentos">Documentos</option>
+      <option value="clientes">Clientes</option>
+    </select>
+
+    <div id="listaServicos" class="lista-servicos">
+      <article class="servico-card" data-categoria="fiscal">
+        <h3>Calendário Fiscal</h3>
+        <p>Lembretes de impostos, declarações e prazos.</p>
+      </article>
+      <article class="servico-card" data-categoria="documentos">
+        <h3>Gerador de Documentos</h3>
+        <p>Recibos, contratos e propostas em poucos cliques.</p>
+      </article>
+      <article class="servico-card" data-categoria="clientes">
+        <h3>Central de Relacionamento</h3>
+        <p>Agenda, histórico e contato com clientes.</p>
+      </article>
+    </div>
+    <p id="mensagemFiltro" aria-live="polite"></p>
+  </section>
+        
     </main>
 
     <footer>
@@ -89,7 +116,5 @@
     
     <!-- Adicione esta linha antes de fechar o body -->
     <script src="js/script.js"></script>
-</body>
-</html>
 </body>
 </html>
