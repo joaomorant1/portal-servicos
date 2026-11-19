@@ -4,15 +4,18 @@
 const servicos = [
   {
     nome: "Calendário Fiscal",
-    descricao: "Acesse prazos, lembretes de impostos e declarações."
+    descricao: "Acesse prazos, lembretes de impostos e declarações.",
+    categoria: "fiscal"
   },
   {
     nome: "Gerador de Documentos",
-    descricao: "Crie recibos, contratos e propostas em poucos cliques."
+    descricao: "Crie recibos, contratos e propostas em poucos cliques.",
+    categoria: "documentos"
   },
   {
     nome: "Central de Relacionamento",
-    descricao: "Organize sua agenda e mantenha o histórico dos clientes."
+    descricao: "Organize sua agenda e mantenha o histórico dos clientes.",
+    categoria: "clientes"
   }
 ];
 
@@ -22,24 +25,23 @@ const botaoConsultar = document.querySelector('#btnConsultar');
 const resultado = document.querySelector('#resultado');
 
 // 3 e 4 · ESCUTE O CLIQUE, LEIA A ESCOLHA E TOME UMA DECISÃO
-botaoConsultar.addEventListener("click", () => {
-  const escolha = campoServico.value;
-  
-  // Dica: descomente a linha abaixo para testar no console se precisar
-  // console.log(escolha); 
+if (botaoConsultar) { // Proteção para não dar erro na página de contato
+  botaoConsultar.addEventListener("click", () => {
+    const escolha = campoServico.value;
 
-  if (escolha === "") {
-    resultado.textContent = "Escolha um serviço antes de consultar.";
-  } else if (escolha === "calendario") {
-    resultado.textContent = "Acesse o Calendário Fiscal para ver prazos e lembretes de impostos.";
-  } else if (escolha === "documentos") {
-    resultado.textContent = "Gere recibos, contratos e propostas em poucos cliques.";
-  } else if (escolha === "relacionamento") {
-    resultado.textContent = "Organize sua agenda e mantenha o histórico dos clientes atualizado.";
-  } else {
-    resultado.textContent = "Serviço não identificado.";
-  }
-});
+    if (escolha === "") {
+      resultado.textContent = "Escolha um serviço antes de consultar.";
+    } else if (escolha === "calendario") {
+      resultado.textContent = "Acesse o Calendário Fiscal para ver prazos e lembretes de impostos.";
+    } else if (escolha === "documentos") {
+      resultado.textContent = "Gere recibos, contratos e propostas em poucos cliques.";
+    } else if (escolha === "relacionamento") {
+      resultado.textContent = "Organize sua agenda e mantenha o histórico dos clientes atualizado.";
+    } else {
+      resultado.textContent = "Serviço não identificado.";
+    }
+  });
+}
 
 // ==========================================
 // AULA 10 - CATÁLOGO DINÂMICO DE SERVIÇOS
@@ -47,32 +49,26 @@ botaoConsultar.addEventListener("click", () => {
 const listaServicos = document.querySelector("#listaServicos");
 
 function renderizarServicos() {
-  // Limpa o container antes de montar (evita duplicar)
+  if (!listaServicos) return; // Proteção
+
   listaServicos.innerHTML = "";
 
-  // Percorre o array de serviços
   servicos.forEach((servico) => {
-    // Cria o card (article)
     const card = document.createElement("article");
     card.classList.add("card-servico");
+    card.setAttribute("data-categoria", servico.categoria);
 
-    // Cria o título (h3)
     const titulo = document.createElement("h3");
     titulo.textContent = servico.nome;
 
-    // Cria a descrição (p)
     const descricao = document.createElement("p");
     descricao.textContent = servico.descricao;
 
-    // Coloca o título e a descrição dentro do card
     card.append(titulo, descricao);
-
-    // Coloca o card dentro do container na página
     listaServicos.appendChild(card);
   });
 }
 
-// Executa a função para mostrar os cards na tela
 renderizarServicos();
 
 // ==========================================
@@ -80,12 +76,10 @@ renderizarServicos();
 // ==========================================
 const campoFavorito = document.querySelector("#servicoFavorito");
 
-// Só executa se o campo existir na página (evita erro nas outras páginas)
 if (campoFavorito) {
   const botaoFavorito = document.querySelector("#btnSalvarFavorito");
   const mensagemFavorito = document.querySelector("#favoritoSalvo");
 
-  // 1. Recupera o valor salvo assim que a página carrega
   const favoritoSalvo = localStorage.getItem("servicoFavorito");
   if (favoritoSalvo) {
     campoFavorito.value = favoritoSalvo;
@@ -93,7 +87,6 @@ if (campoFavorito) {
     mensagemFavorito.style.color = "green";
   }
 
-  // 2. Salva a escolha quando o botão for clicado
   botaoFavorito.addEventListener("click", () => {
     const servico = campoFavorito.value;
 
@@ -103,10 +96,77 @@ if (campoFavorito) {
       return;
     }
 
-    // Salva no navegador
     localStorage.setItem("servicoFavorito", servico);
     
     mensagemFavorito.textContent = `Favorito salvo: ${servico}`;
     mensagemFavorito.style.color = "green";
+  });
+} // <--- AQUI ESTÁ O FECHAMENTO CORRETO DO BLOCO DE FAVORITOS
+
+// ==========================================
+// AULA 11 - FILTRO POR CATEGORIA
+// ==========================================
+const filtroCategoria = document.querySelector("#filtroCategoria");
+const cardsServicos = document.querySelectorAll(".card-servico");
+const mensagemFiltro = document.querySelector("#mensagemFiltro");
+
+if (filtroCategoria) {
+  filtroCategoria.addEventListener("change", () => {
+    const categoriaEscolhida = filtroCategoria.value;
+    let quantidadeVisivel = 0;
+
+    cardsServicos.forEach((card) => {
+      const categoriaDoCard = card.getAttribute("data-categoria");
+      const deveMostrar = categoriaEscolhida === "todas" || categoriaDoCard === categoriaEscolhida;
+      
+      card.hidden = !deveMostrar;
+
+      if (deveMostrar) {
+        quantidadeVisivel++;
+      }
+    });
+
+    if (mensagemFiltro) {
+      mensagemFiltro.textContent = quantidadeVisivel === 0 ? "Nenhum serviço encontrado nesta categoria." : "";
+    }
+  });
+}
+
+// ==========================================
+// VALIDAÇÃO DO FORMULÁRIO (CONTATO)
+// ==========================================
+const formContato = document.querySelector("#formContato");
+
+if (formContato) {
+  formContato.addEventListener("submit", (event) => {
+    event.preventDefault(); // Impede a página de recarregar
+
+    const campoNome = document.querySelector("#nome").value.trim();
+    const campoEmail = document.querySelector("#email").value.trim();
+    const campoMensagem = document.querySelector("#mensagem").value.trim();
+    const statusForm = document.querySelector("#statusForm");
+
+    if (campoNome.length < 3) {
+      alert("Por favor, informe seu nome completo (pelo menos 3 letras).");
+      return;
+    }
+    if (!campoEmail.includes("@") || !campoEmail.includes(".")) {
+      alert("Por favor, informe um e-mail válido.");
+      return;
+    }
+    if (campoMensagem.length < 10) {
+      alert("Sua mensagem precisa ter pelo menos 10 caracteres.");
+      return;
+    }
+
+    // Se passou por todas as validações, mostra sucesso
+    if (statusForm) {
+      statusForm.textContent = "Mensagem enviada com sucesso!";
+      statusForm.style.color = "green";
+    } else {
+      alert("Mensagem validada com sucesso!");
+    }
+    
+    formContato.reset(); // Limpa o formulário
   });
 }
